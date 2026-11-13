@@ -47,8 +47,10 @@ python3 gate_sink.py           # kitchen sink covers every component; theme real
 What those gates actually assert:
 
 - **Extraction fidelity** — the page rebuilt from `dist/` renders **0 differing pixels**
-  against the original artifact, across all 3 panels, at 782×1676. Font loading is pinned,
-  because unpinned renders of this page land in two different visual states.
+  against the original artifact, across all 3 panels, at 782×1676. This is an *identity*
+  check (nothing changed), which is sound precisely because exact equality is not a fuzzy
+  score. Font loading is pinned: with remote fonts, the same file renders in two different
+  visual states and every delta becomes noise.
 - **Palette distinctness** — every one of the 18 tokens clears the CIELAB **dE 2.3**
   just-noticeable-difference threshold against the original, in **both** modes. An earlier
   draft failed this: 6 of 18 tokens sat below the threshold in light mode, so "light
@@ -57,6 +59,19 @@ What those gates actually assert:
   5.24:1 on its canvas.
 - **Sink coverage** — 25 components, 100 specimens (25 × 4 states), zero missing, zero
   collapsed. A deliberate failing control proves the checker can fail.
+
+### Why there is no pixel-score gate
+
+An ink-F1 pixel score is **not** a usable pass/fail gate, and this repo deliberately does not
+use one. Measured on the source component: of six one-property regressions, the pixel score
+caught 2, while geometry and computed-style assertions caught 6. Worse, the score is **not
+monotonic in correctness** — changing the card's vertical padding from 9px to 12px (a real
+regression) *raises* the score from 87.25 to 95.90, and bumping the title from 12.5px to 13px
+raises it to 94.24. A gate that rewards breakage is worse than no gate.
+
+The 54.2 figure quoted below is therefore **descriptive only** — a rough similarity readout
+for the replica against its source photograph, never a target to optimise or a threshold to
+pass.
 
 ## The palette
 
