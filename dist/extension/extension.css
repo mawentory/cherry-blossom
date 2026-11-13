@@ -1,34 +1,44 @@
-/* cherry blossom — extension stylesheet
+/* cherry blossom — extension stylesheet for hermes-webui
 
-   Paired with cherry-blossom.js. The JS registers the token vocabulary; this sheet carries
-   the light-mode palette and anything the token allowlist cannot express.
+   Pattern, verified against an existing full-palette skin (sienna):
+     :root[data-skin="name"]       = LIGHT palette (the default state)
+     :root.dark[data-skin="name"]  = DARK palette
+   The app NEVER adds a `light` class — it only toggles `.dark` on <html>
+   (static/boot.js:3586). An earlier version of this file used
+   `:root.light[data-skin=...]`, which can never match: its light palette was dead
+   code and the JS-registered dark tokens bled into light mode too.
+
+   Why this file exists at all: window.registerHermesSkin() emits exactly ONE
+   selector (`:root[data-skin="key"]{...}`, boot.js:3789) with no per-mode variant,
+   so a two-mode skin cannot express its light palette through the JS API alone.
+   The light/dark split has to live in CSS.
+
+   Tokens below respect the extension allowlist (boot.js:3745): colours only, no
+   --font-*, no arbitrary selectors.
 */
 
+/* ---------- LIGHT: blossom paper, ink-plum text ---------- */
 :root[data-skin="cherry-blossom"] {
-  color-scheme: dark;
-}
-
-:root.light[data-skin="cherry-blossom"],
-:root[data-skin="cherry-blossom"].light {
-  color-scheme: light;
   --bg: #FBEFF4;
   --surface: #FFF9FB;
   --surface2: #F5E1EA;
+  --surface-subtle: #F5E1EA;
   --text: #2E0F1F;
   --text2: #2E0F1F;
   --muted: #81566B;
+  --strong: #2E0F1F;
+  --border: #EAC5D6;
+  --border2: #EFD3DF;
   --accent: #B0366A;
   --accent-hover: #C2537F;
   --accent-contrast: #FFFFFF;
-  --accent-text: #FFFFFF;
-  --accent-bg: #F7D2E1;
-  --accent-bg-strong: #F0C2D4;
+  --accent-text: #B0366A;
+  --accent-bg: rgba(176, 54, 106, 0.10);
+  --accent-bg-strong: rgba(176, 54, 106, 0.20);
   --accent-rgb: 176, 54, 106;
-  --border: #EAC5D6;
-  --border2: #EFD3DF;
-  --hover-bg: #F7D2E1;
+  --hover-bg: rgba(46, 15, 31, 0.05);
   --code-bg: #FFF9FB;
-  --code-text: #2E0F1F;
+  --code-text: #8A2A52;
   --sidebar: #FFF9FB;
   --sidebar-text: #2E0F1F;
   --link: #B0366A;
@@ -36,4 +46,39 @@
   --success: #2E7D53;
   --warning: #8A5A18;
   --danger: #C0392B;
+  --user-bubble: #F7D2E1;
+  --assistant-bubble: #FFF9FB;
+}
+
+/* ---------- DARK: deep plum ground, petal light ---------- */
+:root.dark[data-skin="cherry-blossom"] {
+  --bg: #1A0C16;
+  --surface: #2A1220;
+  --surface2: #341628;
+  --surface-subtle: #341628;
+  --text: #FBEBF3;
+  --text2: #FBEBF3;
+  --muted: #B396A6;
+  --strong: #FBEBF3;
+  --border: #47203A;
+  --border2: #3D1B31;
+  --accent: #F5AEC6;
+  --accent-hover: #FBC9DC;
+  --accent-contrast: #2A0A18;
+  --accent-text: #F5AEC6;
+  --accent-bg: rgba(245, 174, 198, 0.12);
+  --accent-bg-strong: rgba(245, 174, 198, 0.22);
+  --accent-rgb: 245, 174, 198;
+  --hover-bg: rgba(255, 255, 255, 0.07);
+  --code-bg: #2A1220;
+  --code-text: #FBC9DC;
+  --sidebar: #2A1220;
+  --sidebar-text: #FBEBF3;
+  --link: #F5AEC6;
+  --info: #F5AEC6;
+  --success: #7FC29B;
+  --warning: #F0C98E;
+  --danger: #E5484D;
+  --user-bubble: #5E1F3E;
+  --assistant-bubble: #2A1220;
 }
