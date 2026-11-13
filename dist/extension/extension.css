@@ -1,0 +1,39 @@
+/* cherry blossom — extension stylesheet
+
+   Paired with cherry-blossom.js. The JS registers the token vocabulary; this sheet carries
+   the light-mode palette and anything the token allowlist cannot express.
+*/
+
+:root[data-skin="cherry-blossom"] {
+  color-scheme: dark;
+}
+
+:root.light[data-skin="cherry-blossom"],
+:root[data-skin="cherry-blossom"].light {
+  color-scheme: light;
+  --bg: #FBEFF4;
+  --surface: #FFF9FB;
+  --surface2: #F5E1EA;
+  --text: #2E0F1F;
+  --text2: #2E0F1F;
+  --muted: #81566B;
+  --accent: #B0366A;
+  --accent-hover: #C2537F;
+  --accent-contrast: #FFFFFF;
+  --accent-text: #FFFFFF;
+  --accent-bg: #F7D2E1;
+  --accent-bg-strong: #F0C2D4;
+  --accent-rgb: 176, 54, 106;
+  --border: #EAC5D6;
+  --border2: #EFD3DF;
+  --hover-bg: #F7D2E1;
+  --code-bg: #FFF9FB;
+  --code-text: #2E0F1F;
+  --sidebar: #FFF9FB;
+  --sidebar-text: #2E0F1F;
+  --link: #B0366A;
+  --info: #B0366A;
+  --success: #2E7D53;
+  --warning: #8A5A18;
+  --danger: #C0392B;
+}

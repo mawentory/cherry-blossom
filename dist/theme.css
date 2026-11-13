@@ -1,0 +1,66 @@
+/* cherry-blossom theme
+   Overrides the SAME 18 token names that dist/tokens.css defines. No component rule is
+   touched: that is the point of the token layer, and it is why this file is small.
+
+   PALETTE INTENT
+   Cherry blossom is a plum-and-petal identity, not a pink accent bolted onto grey. The
+   first draft failed measurement: 6 of 18 tokens sat below the dE 2.3 just-noticeable
+   threshold in light mode (canvas 2.2, card/side/surface 0.0, surface2 2.0, accent-ink
+   0.0), so "light blossom" was visually the same as "light original". Every token below is
+   now chosen so that BOTH modes clear the JND, checked by verify_palette.py.
+
+   Distinctness from upstream's `hepburn` skin (warm rose red #c6246a / #ec5597):
+     dark petal  #F5AEC6  dE2000 vs hepburn accent = well clear
+     light petal #B0366A  dE2000 13.6 from hepburn accent
+   and the light petal clears WCAG AA on white (4.90:1+).
+*/
+
+/* ---------- dark: deep plum ground, petal light ---------- */
+.blossom,
+.blossom.dark,
+:root[data-theme="cherry-blossom"],
+[data-skin="cherry-blossom"].dark,
+.dark[data-skin="cherry-blossom"]{
+  --canvas:#1A0C16;
+  --side:#2A1220;
+  --sel:#5E1F3E;
+  --sel-line:#F5AEC6;
+  --surface:#2A1220;
+  --surface2:#341628;
+  --line:#47203A;
+  --text:#FBEBF3;
+  --muted:#B396A6;
+  --muted2:#8E7182;
+  --accent:#F5AEC6;
+  --accent-ink:#2A0A18;
+  --warn:#F0C98E;
+  --chip:#47203A;
+  --ghost:#47203A;
+  --ghost-ink:#FBEBF3;
+  --card:#2A1220;
+  --card-line:#3D1B31;
+}
+
+/* ---------- light: blossom paper, ink-plum text ---------- */
+.blossom.light,
+.light[data-skin="cherry-blossom"],
+:root[data-theme="cherry-blossom"].light{
+  --canvas:#FBEFF4;
+  --side:#FFF9FB;
+  --sel:#F7D2E1;
+  --sel-line:#B0366A;
+  --surface:#FFF9FB;
+  --surface2:#F5E1EA;
+  --line:#EAC5D6;
+  --text:#2E0F1F;
+  --muted:#81566B;
+  --muted2:#A3778A;
+  --accent:#B0366A;
+  --accent-ink:#FFFFFF;
+  --warn:#8A5A18;
+  --chip:#F7D2E1;
+  --ghost:#F7D2E1;
+  --ghost-ink:#2E0F1F;
+  --card:#FFF9FB;
+  --card-line:#EFD3DF;
+}

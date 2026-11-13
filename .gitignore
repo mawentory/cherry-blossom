@@ -1,0 +1,5 @@
+fonts/
+verify/*.png
+verify/*.html
+__pycache__/
+*.pyc
