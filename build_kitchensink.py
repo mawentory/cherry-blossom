@@ -120,10 +120,14 @@ ISOLATION = """
 .ks-body{padding:16px;flex:1;display:flex;align-items:flex-start;justify-content:center;
   min-height:104px}
 .ks-body>*{max-width:100%}
-/* the specimens need a positioned, coloured ground to look like the real thing */
-.ks-stage{--canvas:#161117;--side:#201C27;background:var(--canvas);border-radius:9px;
+/* the specimens need a positioned, coloured ground to look like the real thing.
+   NOTE: do NOT hardcode --canvas here. An earlier version set
+   `.ks-stage.lt{--canvas:#F6F3F7}` which outranked the theme and made every
+   "light · blossom" specimen silently render the ORIGINAL light palette.
+   The stage only supplies a fallback; mode and palette come from .dark/.light
+   and .blossom on the same element. */
+.ks-stage{background:var(--canvas,#161117);border-radius:9px;
   padding:12px;width:100%;position:relative;overflow:auto;max-height:320px}
-.ks-stage.lt{--canvas:#F6F3F7;--side:#FFFFFF}
 /* .side/.sidecard carry height:100% + a 227px width from the panel layout, which makes a
    standalone specimen 553px tall. Cap them for gallery display only. */
 .ks-stage .side{height:auto;min-height:0;width:100%;flex:initial}
